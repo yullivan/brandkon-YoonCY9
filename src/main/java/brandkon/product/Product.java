@@ -10,28 +10,38 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String productName;
+    private String name;
 
     private int price;
 
     private String imageUrl;
 
+    private int expirationDays;
+
     @ManyToOne
     private Brand brand;
 
-    public Product(String productName, int price, String imageUrl, Brand brand) {
-        this.productName = productName;
+    public Product() {
+    }
+
+    public Product(String name, int price, String imageUrl, Brand brand, int expirationDays) {
+        this.name = name;
         this.price = price;
         this.imageUrl = imageUrl;
         this.brand = brand;
+        this.expirationDays = expirationDays;
+    }
+
+    public int getExpirationDays() {
+        return expirationDays;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
     public int getPrice() {
@@ -40,6 +50,10 @@ public class Product {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public String getBrandName() {
+        return brand.getName();
     }
 
     public Brand getBrand() {

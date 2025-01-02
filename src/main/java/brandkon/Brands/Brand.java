@@ -13,6 +13,8 @@ public class Brand {
 
     private String imageUrl;
 
+    private String guidelines;
+
     @ManyToOne
     private Category category;
 
@@ -23,6 +25,16 @@ public class Brand {
         this.imageUrl = imageUrl;
         this.category = category;
         this.name = name;
+    }
+
+    public Brand(Long id, String name,  String guidelines) {
+        this.id = id;
+        this.name = name;
+        this.guidelines = guidelines;
+    }
+
+    public String getGuidelines() {
+        return guidelines;
     }
 
     public String getName() {

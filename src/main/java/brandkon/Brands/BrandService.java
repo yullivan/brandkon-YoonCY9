@@ -26,10 +26,15 @@ public class BrandService {
         brandRepository.save(brand);
     }
 
-    public List<BrandResponse> findAll() {
-        List<Brand> brands = brandRepository.findAll();
-        return brands.stream().map(b -> new BrandResponse(
-                b.getId(),b.getName(),b.getImageUrl())).toList();
+//    public List<BrandResponse> findAll() {
+//        List<Brand> brands = brandRepository.findAll();
+//        return brands.stream().map(b -> new BrandResponse(
+//                b.getId(),b.getName(),b.getImageUrl())).toList();
+//    }
+
+    public List<BrandResponse> findByCategory(String slug) {
+        List<Brand> brands = brandRepository.findByCategorySlug(slug);
+        return brands.stream().map(b -> new BrandResponse(b.getId(), b.getName(), b.getImageUrl())).toList();
     }
 
     public BrandResponse findOne(Long brandId) {

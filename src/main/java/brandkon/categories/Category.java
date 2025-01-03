@@ -1,11 +1,13 @@
 package brandkon.categories;
 
+import brandkon.brands.BrandCategory;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -20,6 +22,9 @@ public class Category {
     private String slug;
 
     private String imageUrl;
+
+    @OneToMany(mappedBy = "category")
+    private List<BrandCategory> brandCategories;
 
     @CreatedDate
     private LocalDateTime createdAt;

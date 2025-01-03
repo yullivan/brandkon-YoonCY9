@@ -1,7 +1,7 @@
 package brandkon.product;
 
-import brandkon.Brands.BrandRepository;
-import brandkon.Brands.DTO.BrandDetailsResponse;
+import brandkon.brands.BrandRepository;
+import brandkon.brands.DTO.BrandDetailsResponse;
 import brandkon.product.DTO.ProductDetailed;
 import brandkon.product.DTO.ProductResponse;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package brandkon.Brands;
+package brandkon.brands;
 
-import brandkon.Brands.DTO.BrandResponse;
+import brandkon.brands.DTO.BrandResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,7 +19,7 @@ public class BrandRestController {
 
     @GetMapping("/brands")
     // 특정 카테고리의 모든 브랜드 목록 전달
-    public List<BrandResponse> findByBrand(@RequestParam(required = false, value = "category") String category) {
+    public List<BrandResponse> findByCategory(@RequestParam(required = false, value = "category") String category) {
         return brandService.findByCategory(category);
     }
 

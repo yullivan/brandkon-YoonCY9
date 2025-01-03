@@ -1,6 +1,6 @@
 package brandkon.product.DTO;
 
-import brandkon.Brands.Brand;
+import brandkon.brands.Brand;
 
 public record CreateProduct(
                             String productName,

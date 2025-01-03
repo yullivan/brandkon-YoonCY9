@@ -1,12 +1,12 @@
-package brandkon.Brands;
+package brandkon.brands;
 
-import brandkon.categories.Category;
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @EntityListeners(AuditingEntityListener.class)
 @Entity
@@ -28,15 +28,14 @@ public class Brand {
 
     private String guidelines;
 
-    @ManyToOne
-    private Category category;
+    @OneToMany(mappedBy = "brand")
+    private List<BrandCategory> brandCategories;
 
     public Brand() {
     }
 
-    public Brand(String imageUrl,String name, Category category) {
+    public Brand(String imageUrl,String name) {
         this.imageUrl = imageUrl;
-        this.category = category;
         this.name = name;
     }
 
@@ -62,7 +61,5 @@ public class Brand {
         return imageUrl;
     }
 
-    public Category getCategory() {
-        return category;
-    }
+
 }

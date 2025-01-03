@@ -18,7 +18,7 @@ public class CategoryRestController {
         this.categoryService = categoryService;
     }
 
-    @PostMapping("/brands")
+    @PostMapping("/categories")
     public void Create(@RequestBody CreateCategory brands) {
         categoryService.Create(brands);
     }

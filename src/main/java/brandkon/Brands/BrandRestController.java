@@ -19,7 +19,7 @@ public class BrandRestController {
 
     @GetMapping("/brands")
     // 특정 카테고리의 모든 브랜드 목록 전달
-    public List<BrandResponse> findByBrand(@RequestParam("category") String category) {
+    public List<BrandResponse> findByBrand(@RequestParam(required = false, value = "category") String category) {
         return brandService.findByCategory(category);
     }
 

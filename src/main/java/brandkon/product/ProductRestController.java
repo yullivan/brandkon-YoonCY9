@@ -18,13 +18,8 @@ public class ProductRestController {
         this.productService = productService;
     }
 
-//    @GetMapping("/products")
-//    public List<ProductResponse> findAll() {
-//        return productService.findAll();
-//    }
-
     @GetMapping("/products")
-    public List<ProductResponse> findBrandAll(@RequestParam("brandId") Long brandId) {
+    public List<ProductResponse> findBrandAll(@RequestParam(required = false, value = "brandId") Long brandId) {
         return productService.findBrandAll(brandId);
     }
 
@@ -36,8 +31,17 @@ public class ProductRestController {
 
     @GetMapping("/products/popular")
     // 인기상품
-    public List<ProductResponse> popularProducts() {
-        return productService.findAll();
+    public List<ProductResponse> popularProducts(@RequestParam(required = false, value = "brandId") Long brandId,
+                                                 @RequestParam(required = false, value = "categoryId") Long categoryId) {
+        if (brandId != null && categoryId == null) {
+            return productService.BrandPopularProducts(brandId);
+        } else if (brandId == null && categoryId != null) {
+            return productService.CategoryPopularProducts(categoryId);
+        }
+
+        else {
+            throw new IllegalArgumentException("브랜드아이디나 카테고리 아이디를 입력해주세요.");
+        }
     }
 
 

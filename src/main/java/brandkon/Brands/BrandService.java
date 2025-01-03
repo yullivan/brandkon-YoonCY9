@@ -5,7 +5,6 @@ import brandkon.Brands.DTO.CreateBrand;
 import brandkon.categories.Category;
 import brandkon.categories.CategoryRepository;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service

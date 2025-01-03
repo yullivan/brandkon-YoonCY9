@@ -20,13 +20,6 @@ public class ProductService {
         this.brandRepository = brandRepository;
     }
 
-    public List<ProductResponse> findAll () {
-        List<Product> products = productRepository.findAll();
-        return products.stream().map(p -> new ProductResponse(
-                p.getId(), p.getBrandName(), p.getName(),
-                p.getPrice(), p.getImageUrl())).toList();
-    }
-
     public List<ProductResponse> findBrandAll(Long brandId) {
         List<Product> products = productRepository.findByBrandId(brandId);
         return products.stream().map(p -> new ProductResponse(
@@ -49,8 +42,22 @@ public class ProductService {
         );
     }
 
+    public List<ProductResponse> BrandPopularProducts(Long brandId) {
+        // 그냥 임의로 만든거 다시짜야함
+        List<Product> products = productRepository.findTop5ByBrandIdOrderBySaleDesc(brandId);
+        return products.stream().map(p -> new ProductResponse(p.getId(),
+                p.getBrandName(),
+                p.getName(),
+                p.getPrice(),
+                p.getImageUrl())).toList();
+    }
 
-
-
-
+    public List<ProductResponse> CategoryPopularProducts(Long ctId) {
+        List<Product> products = productRepository.findTop5ByCategoryIdOrderBySaleDesc(ctId);
+        return products.stream().map(p -> new ProductResponse(p.getId(),
+                p.getBrandName(),
+                p.getName(),
+                p.getPrice(),
+                p.getImageUrl())).toList();
+    }
 }

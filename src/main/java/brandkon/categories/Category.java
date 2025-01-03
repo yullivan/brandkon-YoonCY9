@@ -1,10 +1,13 @@
 package brandkon.categories;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.LocalDateTime;
+
+@EntityListeners(AuditingEntityListener.class)
 @Entity
 public class Category {
 
@@ -18,6 +21,12 @@ public class Category {
 
     private String imageUrl;
 
+    @CreatedDate
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    private LocalDateTime updatedAt;
+
     public Category() {
     }
 
@@ -27,8 +36,20 @@ public class Category {
         this.imageUrl = imageUrl;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
     }
 
     public String getName() {
